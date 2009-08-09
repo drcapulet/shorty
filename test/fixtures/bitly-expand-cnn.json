@@ -1,0 +1,10 @@
+{
+	"errorCode": 0,
+	"errorMessage": "",
+	"results": { 
+		"15DlK": { 
+			"longUrl": "http://cnn.com/" 
+		}
+	},
+	"statusCode": "OK"
+}

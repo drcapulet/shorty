@@ -1,7 +1,8 @@
 
 module Shorty
   # The tr.im API class. API documentation: http://tr.im/website/api
-  class Trim < API
+  class Trim
+    include HTTParty
     attr_reader :options
     # API Error
     class APIError < StandardError; end
@@ -36,7 +37,8 @@ module Shorty
 
     # TODO: We should take the api_key, username and or password here and authenticate them if needed (need to look into that)
     def initialize(api_key = nil)
-      @options = {:api_key => api_key} if api_key
+      @options = {}
+      @options << {:api_key => api_key} if api_key
     end
 
     # The trim_simple API method as defined: http://tr.im/website/api#trim_simple
@@ -63,8 +65,9 @@ module Shorty
     #   api.trim_url(:url => 'http://google.com', :custom => 'thisismygoogle', :sandbox => 'true') # => http://tr.im/szMj
     
     def trim_url( options = {} )
-      options.merge!(self.options)
+      options.merge!(@options)
       response = self.class.get( '/trim_url.xml', :query => options )
+      response = Crack::XML.parse(response)
       raise_error(response['trim']['status']['code'], response['trim']['status']['message']) if response['trim']['status']['code'] >= '205'
       return response['trim']['url']
     end
