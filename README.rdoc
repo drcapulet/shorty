@@ -1,8 +1,13 @@
 = Shorty
 
 shorty makes interfacing with url shortening services easy, so far the following are supported:
-- bit.ly
-- tr.im
+- http://bit.ly
+- http://tr.im - only URL API implemented, not media ones
+- http://is.gd
+- http://tinyurl.com
+- http://cli.gs - only shorten implemented, expand not
+- http://twurl.nl
+- http://su.pr
 
 == Install
 
@@ -10,21 +15,32 @@ shorty makes interfacing with url shortening services easy, so far the following
 
 == Usage
 
-* tr.im
-* bit.ly
+Yeah just read the rdocs.
 
 == Possible Additions
 
-* http://yfrog.com
-* http://truwl.nl
-* http://twitpic.com
-* http://ping.fm
-* http://ff.im
-* http://su.pr
-* http://post.ly - http://post.ly/20Yh
-* http://tinyurl.com
-* http://is.gd
-* http://cli.gs
+- http://ow.ly - currently no API, says it is coming soon
+
+== Other Possible Gems
+
+- http://post.ly - Not really a shortener
+- http://ping.fm - Not really a shortener
+- http://ff.im - Not a shortener either
+- http://yfrog.com - Not a shortener, maybe expand this gem or a media gem. API docs: http://code.google.com/p/imageshackapi
+- http://twitpic.com - Same as yfrog. API docs: http://twitpic.com/api.do
+
+== Other Ideas
+
+* Possibly use OpenStruct to make data access easier
+* Possibly set a user agent using
+
+    class Foo
+      include HTTParty
+      headers 'Accept' => 'text/html'
+    end
+
+* Also possibly create a command line app
+
 
 == License
 

@@ -49,6 +49,20 @@ module Shorty
       expand["errorCode"].zero? ? expand["results"][shorturl]["longUrl"] : raise_error(expand["errorCode"], expand["errorMessage"])
     end
     
+    # info - Given a bit.ly url or hash, return information about that page, such as the long source url, ...
+    def info(urlorhash, keys = [])
+      urlhash = gsub_url(urlorhash)
+      if keys != []
+        query = {:hash => urlhash, :keys => keys.join(',')}
+      else
+        query = {:hash => urlhash}
+      end
+      query.merge!(@options)
+      stats = self.class.get('/info', :query => query)
+      stats = Crack::JSON.parse(stats)
+      stats["errorCode"].zero? ? stats["results"][urlhash] : raise_error(stats["errorCode"], stats["errorMessage"])
+    end
+    
     # stats - get stats on clicks and reffers, pass either:
     #
     # - shortURL: A single bitly url, eg: http://bit.ly/1RmnUT
