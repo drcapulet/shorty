@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{shorty}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alex Coomans"]
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
      "lib/shorty/tinyurl.rb",
      "lib/shorty/trim.rb",
      "lib/shorty/twurl.rb",
+     "shorty.gemspec",
      "test/bitly_test.rb",
      "test/cligs_test.rb",
      "test/fixtures/bitly-expand-cnn.json",
