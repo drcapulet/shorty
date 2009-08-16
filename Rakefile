@@ -18,8 +18,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = "shorty"
-    gemspec.summary = "API for shortening urls"
-    gemspec.description = "Describe your gem"
+    gemspec.summary = "Gem that talks to APIs for shortening urls"
+    gemspec.description = "Makes it easy to shorten URLs easily"
     gemspec.email = "alex@alexcoomans.com"
     gemspec.homepage = "http://github.com/drcapulet/shorty"
     gemspec.authors = ["Alex Coomans"]

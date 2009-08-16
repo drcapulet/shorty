@@ -6,12 +6,12 @@ module Shorty
     include HTTParty
   end
   
-  require File.dirname(__FILE__) + '/shorty/trim'
-  require File.dirname(__FILE__) + '/shorty/bitly'
-  require File.dirname(__FILE__) + '/shorty/tinyurl'
-  require File.dirname(__FILE__) + '/shorty/isgd'
-  require File.dirname(__FILE__) + '/shorty/cligs'
-  require File.dirname(__FILE__) + '/shorty/twurl'
-  require File.dirname(__FILE__) + '/shorty/supr'
+  require 'shorty/trim'
+  require 'shorty/bitly'
+  require 'shorty/tinyurl'
+  require 'shorty/isgd'
+  require 'shorty/cligs'
+  require 'shorty/twurl'
+  require 'shorty/supr'
 end
 
