@@ -73,7 +73,7 @@ module Shorty
     #   bitly.expand('1RmnUT')
     # Or:
     #   bitly = Shorty::Bitly.new('login', 'apikey')
-    #   bitly.expand(http://bit.ly/1RmnUT')
+    #   bitly.expand('http://bit.ly/1RmnUT')
     def stats(urlorhash)
       urlhash = gsub_url(urlorhash)
       query = {:hash => urlhash}

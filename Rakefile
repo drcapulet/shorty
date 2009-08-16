@@ -19,10 +19,12 @@ begin
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = "shorty"
     gemspec.summary = "Gem that talks to APIs for shortening urls"
-    gemspec.description = "Makes it easy to shorten URLs easily"
+    gemspec.description = "Makes it easy to shorten URLs"
     gemspec.email = "alex@alexcoomans.com"
     gemspec.homepage = "http://github.com/drcapulet/shorty"
     gemspec.authors = ["Alex Coomans"]
+    gemspec.add_dependency('httparty', '>= 0.4.4')
+    gemspec.add_dependency('crack', '>= 0.1.4')
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
