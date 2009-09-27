@@ -15,7 +15,13 @@ shorty makes interfacing with url shortening services easy, so far the following
 
 == Usage
 
-Yeah just read the rdocs.
+Yeah just read the rdocs. But to get started, make sure the gem is installed. Require:
+
+  require 'shorty'
+
+or with Rails:
+
+  config.gem 'drcapulet-shorty', :lib => 'shorty'
 
 == Possible Additions
 
@@ -40,7 +46,11 @@ Yeah just read the rdocs.
     end
 
 * Also possibly create a command line app
+* Any other ideas create an issue and start the title with [feature]
 
+== Contributing
+
+I invite anyone who wants to help to fork and then when you've made your changes, send me a pull request. I'd love to keep everything central.
 
 == License
 
