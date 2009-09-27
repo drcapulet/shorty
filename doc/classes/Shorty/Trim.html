@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Shorty::Trim</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Shorty::Trim</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/shorty/trim_rb.html">
+                lib/shorty/trim.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The tr.im <a href="API.html">API</a> class. <a href="API.html">API</a>
+documentation: <a href="http://tr.im/website/api">tr.im/website/api</a>
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000003">new</a>&nbsp;&nbsp;
+      <a href="#M000004">shorten</a>&nbsp;&nbsp;
+      <a href="#M000005">trim_url</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">HTTParty</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Trim/APIError.html" class="link">Shorty::Trim::APIError</a><br />
+Class <a href="Trim/APIKeyInvalid.html" class="link">Shorty::Trim::APIKeyInvalid</a><br />
+Class <a href="Trim/APIKeyRequired.html" class="link">Shorty::Trim::APIKeyRequired</a><br />
+Class <a href="Trim/AlreadyInUse.html" class="link">Shorty::Trim::AlreadyInUse</a><br />
+Class <a href="Trim/AlreadyShortened.html" class="link">Shorty::Trim::AlreadyShortened</a><br />
+Class <a href="Trim/AuthenticationInvalid.html" class="link">Shorty::Trim::AuthenticationInvalid</a><br />
+Class <a href="Trim/FlaggedSpam.html" class="link">Shorty::Trim::FlaggedSpam</a><br />
+Class <a href="Trim/InvalidCharacters.html" class="link">Shorty::Trim::InvalidCharacters</a><br />
+Class <a href="Trim/InvalidParameter.html" class="link">Shorty::Trim::InvalidParameter</a><br />
+Class <a href="Trim/MediaInvalidDimensions.html" class="link">Shorty::Trim::MediaInvalidDimensions</a><br />
+Class <a href="Trim/MediaTooLarge.html" class="link">Shorty::Trim::MediaTooLarge</a><br />
+Class <a href="Trim/MediaTypeUnsupported.html" class="link">Shorty::Trim::MediaTypeUnsupported</a><br />
+Class <a href="Trim/MissingParameter.html" class="link">Shorty::Trim::MissingParameter</a><br />
+Class <a href="Trim/ReferenceCodeNonExistent.html" class="link">Shorty::Trim::ReferenceCodeNonExistent</a><br />
+Class <a href="Trim/URLAlreadyClaimed.html" class="link">Shorty::Trim::URLAlreadyClaimed</a><br />
+Class <a href="Trim/URLDoesntExist.html" class="link">Shorty::Trim::URLDoesntExist</a><br />
+Class <a href="Trim/URLInvalid.html" class="link">Shorty::Trim::URLInvalid</a><br />
+Class <a href="Trim/URLMissing.html" class="link">Shorty::Trim::URLMissing</a><br />
+Class <a href="Trim/UnknownError.html" class="link">Shorty::Trim::UnknownError</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TRIM_ERRORS</td>
+          <td>=</td>
+          <td class="context-item-value">{       400 =&gt; Shorty::Trim::MissingParameter, # Required Parameter URL Not Submitted.       401 =&gt; Shorty::Trim::URLInvalid, # Submitted URL Invalid.       402 =&gt; Shorty::Trim::AlreadyShortened, # Submitted URL is Already a Shortened URL.       403 =&gt; Shorty::Trim::FlaggedSpam, # The URL has been Flagged as Spam and Rejected.       404 =&gt; Shorty::Trim::AlreadyInUse, # The Custom tr.im URL Requested is Already in Us.       405 =&gt; Shorty::Trim::InvalidCharacters, # Requested Custom URL Contains Invalid Characters.       406 =&gt; Shorty::Trim::InvalidCharacters, # Requested Privacy Code Contains Invalid Characters.       407 =&gt; Shorty::Trim::InvalidCharacters, # Requested Search Tags Contains Invalid Characters.       410 =&gt; Shorty::Trim::AuthenticationInvalid, # Required Authentication Not Submitted or Invalid.       411 =&gt; Shorty::Trim::MissingParameter, # URL Reference Code Not Submitted.       412 =&gt; Shorty::Trim::ReferenceCodeNonExistent, # URL Reference Code Not Does Not Exist.       413 =&gt; Shorty::Trim::URLMissing, # tr.im URL Path Not Submitted.       414 =&gt; Shorty::Trim::URLDoesntExist, # tr.im URL Does Not Exist.       415 =&gt; Shorty::Trim::URLAlreadyClaimed, # tr.im URL Referenced Already Claimed.       420 =&gt; Shorty::Trim::MediaTypeUnsupported, # Media Type Uploaded Not Supported.       421 =&gt; Shorty::Trim::MediaTooLarge, # Media Uploaded too Large.       422 =&gt; Shorty::Trim::MediaInvalidDimensions, # Media Uploaded XY Dimensions too Small.       425 =&gt; Shorty::Trim::APIError, # API Rate Limit Exceeded.       426 =&gt; Shorty::Trim::APIKeyInvalid, # API Key Submitted Does Not Exist or is Invalid.       427 =&gt; Shorty::Trim::APIKeyRequired, # API Key Required.       445 =&gt; Shorty::Trim::InvalidParameter, # Parameter Data Within the Request is Invalid.       446 =&gt; Shorty::Trim::MissingParameter, # &quot;Required Parameter Missing within the Request.&quot;       450 =&gt; Shorty::Trim::UnknownError # &quot;An Unknown Error Occurred. Please email api@tr.im.&quot;</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">options</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="#M000003" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(api_key = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+TODO: We should take the api_key, username and or password here and
+authenticate them if needed (need to look into that)
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000003-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/shorty/trim.rb, line 39</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">api_key</span> = <span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-ivar">@options</span> = {}
+      <span class="ruby-ivar">@options</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-identifier">:api_key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">api_key</span>} <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">api_key</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="#M000004" class="method-signature">
+          <span class="method-name">shorten</span><span class="method-args">( website_url )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The trim_simple <a href="API.html">API</a> method as defined: <a
+href="http://tr.im/website/api#trim_simple">tr.im/website/api#trim_simple</a>
+Can only be passed a site URL, only returns a URL, and no error handling
+occurs
+</p>
+<pre>
+  api = Shorty::Trim.new
+  api.shorten('http://google.com') =&gt; http://tr.im/szMj
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/shorty/trim.rb, line 48</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">shorten</span>( <span class="ruby-identifier">website_url</span> )
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">get</span>( <span class="ruby-value str">'/trim_simple'</span>, <span class="ruby-identifier">:query</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-identifier">:url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">website_url</span> } )
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="#M000005" class="method-signature">
+          <span class="method-name">trim_url</span><span class="method-args">( options = {} )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The <a href="Trim.html#M000005">trim_url</a> <a href="API.html">API</a>
+method as defined: <a
+href="http://tr.im/website/api#trim_url">tr.im/website/api#trim_url</a> The
+following options can be passed:
+</p>
+<ul>
+<li>url: the URL you want to <a href="Trim.html#M000004">shorten</a>
+
+</li>
+<li>custom: A custom URL that is preferred to an auto-generated URL.
+
+</li>
+<li>searchtags: A search string value to attach to a tr.im URL.
+
+</li>
+<li>privacycode: A string value that must be appended after the URL.
+
+</li>
+<li>newtrim: If present with any value, it will force the creation of a <a
+href="Trim.html#M000003">new</a> tr.im URL.
+
+</li>
+<li>sandbox: If present with any value a test data set will be returned, and no
+URL created. This is intended for testing so that you do not consume <a
+href="API.html">API</a> calls or insert pointless data while in
+development.
+
+<p>
+require &#8216;shorty&#8217; api = <a
+href="Trim.html#M000003">Shorty::Trim.new</a> api.trim_url(:url =&gt;
+&#8216;<a href="http://google.com">google.com</a>&#8217;, :custom =&gt;
+&#8216;thisismygoogle&#8217;, :sandbox =&gt; &#8216;true&#8217;) # =&gt; <a
+href="http://tr.im/szMj">tr.im/szMj</a>
+</p>
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000005-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/shorty/trim.rb, line 67</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">trim_url</span>( <span class="ruby-identifier">options</span> = {} )
+      <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-ivar">@options</span>)
+      <span class="ruby-identifier">response</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">get</span>( <span class="ruby-value str">'/trim_url.xml'</span>, <span class="ruby-identifier">:query</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span> )
+      <span class="ruby-identifier">response</span> = <span class="ruby-constant">Crack</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>)
+      <span class="ruby-identifier">raise_error</span>(<span class="ruby-identifier">response</span>[<span class="ruby-value str">'trim'</span>][<span class="ruby-value str">'status'</span>][<span class="ruby-value str">'code'</span>], <span class="ruby-identifier">response</span>[<span class="ruby-value str">'trim'</span>][<span class="ruby-value str">'status'</span>][<span class="ruby-value str">'message'</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">response</span>[<span class="ruby-value str">'trim'</span>][<span class="ruby-value str">'status'</span>][<span class="ruby-value str">'code'</span>] <span class="ruby-operator">&gt;=</span> <span class="ruby-value str">'205'</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">response</span>[<span class="ruby-value str">'trim'</span>][<span class="ruby-value str">'url'</span>]
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

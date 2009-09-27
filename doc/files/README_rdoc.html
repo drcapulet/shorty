@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README.rdoc</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README.rdoc</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README.rdoc
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Sun Aug 16 12:03:31 -0700 2009</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1><a href="../classes/Shorty.html">Shorty</a></h1>
+<p>
+shorty makes interfacing with url shortening services easy, so far the
+following are supported:
+</p>
+<ul>
+<li><a href="http://bit.ly">bit.ly</a>
+
+</li>
+<li><a href="http://tr.im">tr.im</a> - only URL API implemented, not media ones
+
+</li>
+<li><a href="http://is.gd">is.gd</a>
+
+</li>
+<li><a href="http://tinyurl.com">tinyurl.com</a>
+
+</li>
+<li><a href="http://cli.gs">cli.gs</a> - only shorten implemented, expand not
+
+</li>
+<li><a href="http://twurl.nl">twurl.nl</a>
+
+</li>
+<li><a href="http://su.pr">su.pr</a>
+
+</li>
+</ul>
+<h2>Install</h2>
+<pre>
+  sudo gem install drcapulet-shorty
+</pre>
+<h2>Usage</h2>
+<p>
+Yeah just read the rdocs. But to get started, make sure the gem is
+installed. Require:
+</p>
+<pre>
+  require 'shorty'
+</pre>
+<p>
+or with Rails:
+</p>
+<pre>
+  config.gem 'drcapulet-shorty', :lib =&gt; 'shorty'
+</pre>
+<h2>Possible Additions</h2>
+<ul>
+<li><a href="http://ow.ly">ow.ly</a> - currently no API, says it is coming soon
+
+</li>
+</ul>
+<h2>Other Possible Gems</h2>
+<ul>
+<li><a href="http://post.ly">post.ly</a> - Not really a shortener
+
+</li>
+<li><a href="http://ping.fm">ping.fm</a> - Not really a shortener
+
+</li>
+<li><a href="http://ff.im">ff.im</a> - Not a shortener either
+
+</li>
+<li><a href="http://yfrog.com">yfrog.com</a> - Not a shortener, maybe expand
+this gem or a media gem. API docs: <a
+href="http://code.google.com/p/imageshackapi">code.google.com/p/imageshackapi</a>
+
+</li>
+<li><a href="http://twitpic.com">twitpic.com</a> - Same as yfrog. API docs: <a
+href="http://twitpic.com/api.do">twitpic.com/api.do</a>
+
+</li>
+</ul>
+<h2>Other Ideas</h2>
+<ul>
+<li>Possibly use OpenStruct to make data access easier
+
+</li>
+<li>Possibly set a user agent using
+
+<pre>
+  class Foo
+    include HTTParty
+    headers 'Accept' =&gt; 'text/html'
+  end
+</pre>
+</li>
+<li>Also possibly create a command line app
+
+</li>
+<li>Any other ideas create an issue and start the title with [feature]
+
+</li>
+</ul>
+<h2>Contributing</h2>
+<p>
+I invite anyone who wants to help to fork and then when you&#8216;ve made
+your changes, send me a pull request. I&#8216;d love to keep everything
+central.
+</p>
+<h2>License</h2>
+<p>
+Copyright (c) 2009 Alex Coomans
+</p>
+<p>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+&quot;Software&quot;), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to the
+following conditions:
+</p>
+<p>
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+</p>
+<p>
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
