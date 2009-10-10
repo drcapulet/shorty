@@ -11,7 +11,7 @@ shorty makes interfacing with url shortening services easy, so far the following
 
 == Install
 
-  sudo gem install drcapulet-shorty
+  sudo gem install shorty
 
 == Usage
 
@@ -21,7 +21,7 @@ Yeah just read the rdocs. But to get started, make sure the gem is installed. Re
 
 or with Rails:
 
-  config.gem 'drcapulet-shorty', :lib => 'shorty'
+  config.gem 'shorty'
 
 == Possible Additions
 

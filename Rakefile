@@ -26,6 +26,7 @@ begin
     gemspec.add_dependency('httparty', '>= 0.4.4')
     gemspec.add_dependency('crack', '>= 0.1.4')
   end
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
