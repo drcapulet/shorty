@@ -1,11 +1,13 @@
 require 'httparty'
 require 'crack'
+require 'ostruct'
 
 module Shorty
   class API
     include HTTParty
   end
   
+  require File.dirname(__FILE__) + '/shorty/to_openstruct'
   require File.dirname(__FILE__) + '/shorty/trim'
   require File.dirname(__FILE__) + '/shorty/bitly'
   require File.dirname(__FILE__) + '/shorty/tinyurl'

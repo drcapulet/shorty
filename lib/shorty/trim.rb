@@ -67,9 +67,9 @@ module Shorty
     def trim_url( options = {} )
       options.merge!(@options)
       response = self.class.get( '/trim_url.xml', :query => options )
-      response = Crack::XML.parse(response)
-      raise_error(response['trim']['status']['code'], response['trim']['status']['message']) if response['trim']['status']['code'] >= '205'
-      return response['trim']['url']
+      response = handle_response(Crack::XML.parse(response))
+      raise_error(response.status.code, response.status.message) if response.status.code >= '205'
+      return response.url
     end
     
     TRIM_ERRORS = {
@@ -104,6 +104,12 @@ module Shorty
       # raise Shorty::Trim::APIError.new(TRIM_ERRORS[code])
       raise TRIM_ERRORS[code], message
     end
+    
+    # Process the response
+    def handle_response(resp)
+      resp['trim'].to_openstruct
+    end
+    
   end
 end
 
