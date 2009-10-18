@@ -40,10 +40,11 @@ module Shorty
     #
     # - shorturl: the bit.ly url, can either be the full url or missing http://bit.ly
     def expand(shorturl)
-      query = {:hash => gsub_url(shorturl)}
+      hash = gsub_url(shorturl)
+      query = {:hash => hash}
       query.merge!(@options)
       expand = Crack::JSON.parse(self.class.get('/expand', :query => query))
-      expand["errorCode"].zero? ? expand["results"][shorturl]["longUrl"] : raise_error(expand)
+      expand["errorCode"].zero? ? expand["results"][hash]["longUrl"] : raise_error(expand)
     end
     
     # info - Given a bit.ly url or hash, return information about that page, such as the long source url, ...
@@ -89,21 +90,22 @@ module Shorty
     
     def raise_error(hash)
       code = hash["errorCode"]
-      message = stats["errorMessage"] || '(no error message)'
+      message = hash["errorMessage"] || '(no error message)'
       error = message + " (error code: #{code})"
       raise Shorty::Bitly::Error, error
     end
     
-    def handle_response(resp, url)
-      r = {
-        "error" => {
-          "code" => resp["errorCode"],
-          "message" => resp["errorMessage"]
-          },
-        "hash" => resp["results"][url]["hash"]
-      }
-      resp.to_openstruct
-    end
+    # We need to work on how to handle this and working with openstruct
+    # def handle_response(resp, url)
+    #   r = {
+    #     "error" => {
+    #       "code" => resp["errorCode"],
+    #       "message" => resp["errorMessage"]
+    #       },
+    #     "hash" => resp["results"][url]["hash"]
+    #   }
+    #   resp.to_openstruct
+    # end
     
   end
 end

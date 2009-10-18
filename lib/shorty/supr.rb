@@ -31,26 +31,16 @@ module Shorty
     def shorten(url, full = true)
       query = {:longUrl => url}
       query.merge!(@options)
-      short = self.class.get('/shorten', :query => query)
-      short = Crack::JSON.parse(short)
-      if full
-        short["errorCode"].zero? ? short["results"][url]["shortUrl"] : raise_error(short["errorCode"], short["errorMessage"])
-      else
-        short["errorCode"].zero? ? short["results"][url]["hash"] : raise_error(short["errorCode"], short["errorMessage"])
-      end
+      short = Crack::JSON.parse(self.class.get('/shorten', :query => query))
+      self.class.handle_full_or_hash_option(short, url, full)
     end
     
     # self.shorten. see shorten
     def self.shorten(url, full = true)
       query = {:longUrl => url}
       query.merge!(@options) if @options
-      short = get('/shorten', :query => query)
-      short = Crack::JSON.parse(short)
-      if full
-        short["errorCode"].zero? ? short["results"][url]["shortUrl"] : raise_error(short["errorCode"], short["errorMessage"])
-      else
-        short["errorCode"].zero? ? short["results"][url]["hash"] : raise_error(short["errorCode"], short["errorMessage"])
-      end
+      short = Crack::JSON.parse(get('/shorten', :query => query))
+      self.handle_full_or_hash_option(short, url, full)
     end
     
     # expand. pass either:
@@ -62,7 +52,7 @@ module Shorty
       query.merge!(@options)
       expand = self.class.get('/expand', :query => query)
       expand = Crack::JSON.parse(expand)
-      expand["errorCode"].zero? ? expand["results"][hash]["longUrl"] : raise_error(expand["errorCode"], expand["errorMessage"])
+      expand["errorCode"].zero? ? expand["results"][hash]["longUrl"] : self.class.raise_error(expand)
     end
     
     # self.expand. see expand
@@ -72,7 +62,7 @@ module Shorty
       query.merge!(@options) if @options
       expand = get('/expand', :query => query)
       expand = Crack::JSON.parse(expand)
-      expand["errorCode"].zero? ? expand["results"][hash]["longUrl"] : raise_error(expand["errorCode"], expand["errorMessage"])
+      expand["errorCode"].zero? ? expand["results"][hash]["longUrl"] : self.raise_error(expand)
     end
 
         
@@ -86,14 +76,19 @@ module Shorty
       shorturl.split('/').last
     end
     
-    def raise_error(code, message = '(no error message)')
+    def self.raise_error(hash)
+      code = hash["errorCode"]
+      message = hash["errorMessage"] || '(no error message)'
       error = message + " (error code: #{code})"
       raise Shorty::Supr::Error, error
     end
     
-    def self.raise_error(code, message = '(no error message)')
-      error = message + " (error code: #{code})"
-      raise Shorty::Supr::Error, error
+    def self.handle_full_or_hash_option(short, url, full)
+      if full
+        short["errorCode"].zero? ? short["results"][url]["shortUrl"] : self.raise_error(short)
+      else
+        short["errorCode"].zero? ? short["results"][url]["hash"] : self.raise_error(short)
+      end
     end
 
   end
