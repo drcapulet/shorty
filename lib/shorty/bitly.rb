@@ -32,8 +32,7 @@ module Shorty
     def shorten( longurl )
       query = {:longUrl => longurl}
       query.merge!(@options)
-      short = self.class.get('/shorten', :query => query)
-      short = Crack::JSON.parse(short)
+      short = Crack::JSON.parse(self.class.get('/shorten', :query => query))
       short["errorCode"].zero? ? short["results"][longurl]["shortUrl"] : raise_error(short)
     end
     
@@ -41,11 +40,9 @@ module Shorty
     #
     # - shorturl: the bit.ly url, can either be the full url or missing http://bit.ly
     def expand(shorturl)
-      shorturl = gsub_url(shorturl)
-      query = {:hash => shorturl}
+      query = {:hash => gsub_url(shorturl)}
       query.merge!(@options)
-      expand = self.class.get('/expand', :query => query)
-      expand = Crack::JSON.parse(expand)
+      expand = Crack::JSON.parse(self.class.get('/expand', :query => query))
       expand["errorCode"].zero? ? expand["results"][shorturl]["longUrl"] : raise_error(expand)
     end
     
@@ -58,8 +55,7 @@ module Shorty
         query = {:hash => urlhash}
       end
       query.merge!(@options)
-      stats = self.class.get('/info', :query => query)
-      stats = Crack::JSON.parse(stats)
+      stats = Crack::JSON.parse(self.class.get('/info', :query => query))
       stats["errorCode"].zero? ? stats["results"][urlhash] : raise_error(stats)
     end
     
@@ -78,8 +74,7 @@ module Shorty
       urlhash = gsub_url(urlorhash)
       query = {:hash => urlhash}
       query.merge!(@options)
-      stats = self.class.get('/stats', :query => query)
-      stats = Crack::JSON.parse(stats)
+      stats = Crack::JSON.parse(self.class.get('/stats', :query => query))
       stats["errorCode"].zero? ? stats["results"] : raise_error(stats)
     end
     
