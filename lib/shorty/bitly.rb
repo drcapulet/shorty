@@ -34,7 +34,7 @@ module Shorty
       query.merge!(@options)
       short = self.class.get('/shorten', :query => query)
       short = Crack::JSON.parse(short)
-      short["errorCode"].zero? ? short["results"][longurl]["shortUrl"] : raise_error(short["errorCode"], short["errorMessage"])
+      short["errorCode"].zero? ? short["results"][longurl]["shortUrl"] : raise_error(short)
     end
     
     # expand- given a bit.ly url, returns long source url, takes:
@@ -46,7 +46,7 @@ module Shorty
       query.merge!(@options)
       expand = self.class.get('/expand', :query => query)
       expand = Crack::JSON.parse(expand)
-      expand["errorCode"].zero? ? expand["results"][shorturl]["longUrl"] : raise_error(expand["errorCode"], expand["errorMessage"])
+      expand["errorCode"].zero? ? expand["results"][shorturl]["longUrl"] : raise_error(expand)
     end
     
     # info - Given a bit.ly url or hash, return information about that page, such as the long source url, ...
@@ -60,7 +60,7 @@ module Shorty
       query.merge!(@options)
       stats = self.class.get('/info', :query => query)
       stats = Crack::JSON.parse(stats)
-      stats["errorCode"].zero? ? stats["results"][urlhash] : raise_error(stats["errorCode"], stats["errorMessage"])
+      stats["errorCode"].zero? ? stats["results"][urlhash] : raise_error(stats)
     end
     
     # stats - get stats on clicks and reffers, pass either:
@@ -70,17 +70,17 @@ module Shorty
     #
     # Example:
     #   bitly = Shorty::Bitly.new('login', 'apikey')
-    #   bitly.expand('1RmnUT')
+    #   bitly.stats('1RmnUT')
     # Or:
     #   bitly = Shorty::Bitly.new('login', 'apikey')
-    #   bitly.expand('http://bit.ly/1RmnUT')
+    #   bitly.stats('http://bit.ly/1RmnUT')
     def stats(urlorhash)
       urlhash = gsub_url(urlorhash)
       query = {:hash => urlhash}
       query.merge!(@options)
       stats = self.class.get('/stats', :query => query)
       stats = Crack::JSON.parse(stats)
-      stats["errorCode"].zero? ? stats["results"] : raise_error(stats["errorCode"], stats["errorMessage"])
+      stats["errorCode"].zero? ? stats["results"] : raise_error(stats)
     end
     
     
@@ -92,9 +92,22 @@ module Shorty
       # shorturl = shorturl.gsub(/bit.ly\//, '') if shorturl.include?('bit.ly/')
     end  
     
-    def raise_error(code, message = '(no error message)')
+    def raise_error(hash)
+      code = hash["errorCode"]
+      message = stats["errorMessage"] || '(no error message)'
       error = message + " (error code: #{code})"
       raise Shorty::Bitly::Error, error
+    end
+    
+    def handle_response(resp, url)
+      r = {
+        "error" => {
+          "code" => resp["errorCode"],
+          "message" => resp["errorMessage"]
+          },
+        "hash" => resp["results"][url]["hash"]
+      }
+      resp.to_openstruct
     end
     
   end
