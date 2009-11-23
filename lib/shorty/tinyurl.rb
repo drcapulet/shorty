@@ -1,14 +1,12 @@
 module Shorty
   # The tinyurl.com API. Not much here, undocumented API
-  class Tinyurl
+  class Tinyurl < SimpleAPI
     include HTTParty
     
-    def shorten(url)
-      self.class.get('http://tinyurl.com/api-create.php', :query => {:url => url})
-    end
+    API_URL = 'http://tinyurl.com/api-create.php'
     
-    def self.shorten(url)
-      get('http://tinyurl.com/api-create.php', :query => {:url => url})
+    def self.prep_query(url)
+      {:url => url}
     end
   end
 end

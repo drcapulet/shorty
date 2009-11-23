@@ -1,14 +1,12 @@
 module Shorty
   # is.gd API as defined http://is.gd/api_info.php
-  class Isgd
+  class Isgd < SimpleAPI
     include HTTParty
     
-    def shorten(url)
-      self.class.get('http://is.gd/api.php', :query => {:longurl => url})
-    end
-    
-    def self.shorten(url)
-      get('http://is.gd/api.php', :query => {:longurl => url})
+    API_URL = 'http://is.gd/api.php'
+        
+    def self.prep_query(url)
+      {:longurl => url}
     end
   end
 end
