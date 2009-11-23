@@ -49,7 +49,7 @@ module Shorty
     
     def raise_error(code, message = '(no error message)')
       error = message + " (error code: #{code})"
-      raise Shorty::Bitly::Error, error
+      raise Shorty::Cligs::Error, error
     end
     
   end

@@ -84,8 +84,6 @@ module Shorty
     
     def gsub_url(shorturl) 
       shorturl.split('/').last
-      # shorturl = shorturl.gsub(/http:\/\//, '') if shorturl.include?('http://')
-      # shorturl = shorturl.gsub(/bit.ly\//, '') if shorturl.include?('bit.ly/')
     end  
     
     def raise_error(hash)
