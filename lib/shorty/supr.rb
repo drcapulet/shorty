@@ -72,11 +72,7 @@ module Shorty
     end
     
     def self.handle_full_or_hash_option(short, url, full)
-      if full
-        short["errorCode"].zero? ? short["results"][url]["shortUrl"] : self.raise_error(short)
-      else
-        short["errorCode"].zero? ? short["results"][url]["hash"] : self.raise_error(short)
-      end
+        short["errorCode"].zero? ? (full ? short["results"][url]["shortUrl"] : short["results"][url]["hash"]) : self.raise_error(short)
     end
     
     def self.prep_shorten_request(url)

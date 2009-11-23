@@ -49,6 +49,10 @@ class SuprTest < Test::Unit::TestCase
       should "return a shortened url" do
         assert_equal 'http://su.pr/2yw2PP', Shorty::Supr.shorten('http://cnn.com')
       end
+      
+      should "return a shortened hash" do
+        assert_equal '2yw2PP', Shorty::Supr.shorten('http://cnn.com', false)
+      end
 
       should "return an expanded url when passed a hash" do
         assert_equal 'http://cnn.com/', Shorty::Supr.expand('2yw2PP')
