@@ -29,32 +29,24 @@ module Shorty
     # - url: The long URL you wish to shorten
     # Will return the full url unless you pass false for the second parameter, then it only returns the hash
     def shorten(url, full = true)
-      query = self.class.prep_shorten_request(url)
-      short = Crack::JSON.parse(self.class.get('/shorten', :query => query))
-      self.class.handle_full_or_hash_option(short, url, full)
+      self.class.get_and_parse_shorten(url, full)
     end
     
     # self.shorten. see shorten
     def self.shorten(url, full = true)
-      query = self.prep_shorten_request(url)
-      short = Crack::JSON.parse(get('/shorten', :query => query))
-      self.handle_full_or_hash_option(short, url, full)
+      get_and_parse_shorten(url, full)
     end
     
     # expand. pass either:
     # - shortUrl: he Su.pr URL you wish to expand
     # - hash: The six character hash you wish to expand
     def expand(urlorhash)
-      query, hash = self.class.prep_expand_request(urlorhash)
-      expand = Crack::JSON.parse(self.class.get('/expand', :query => query))
-      expand["errorCode"].zero? ? expand["results"][hash]["longUrl"] : self.class.raise_error(expand)
+      self.class.get_and_parse_expand(urlorhash)
     end
     
     # self.expand. see expand
     def self.expand(urlorhash)
-      query, hash = self.prep_expand_request(urlorhash)
-      expand = Crack::JSON.parse(get('/expand', :query => query))
-      expand["errorCode"].zero? ? expand["results"][hash]["longUrl"] : self.raise_error(expand)
+      get_and_parse_expand(urlorhash)
     end
 
         
@@ -86,6 +78,17 @@ module Shorty
       query = {:hash => hash}
       query.merge!(@options) if @options
       [query, hash]
+    end
+
+    def self.get_and_parse_shorten(url, full)
+      short = Crack::JSON.parse(get('/shorten', :query => prep_shorten_request(url)))
+      handle_full_or_hash_option(short, url, full)
+    end
+    
+    def self.get_and_parse_expand(urlorhash)
+      query, hash = prep_expand_request(urlorhash)
+      expand = Crack::JSON.parse(get('/expand', :query => query))
+      expand["errorCode"].zero? ? expand["results"][hash]["longUrl"] : raise_error(expand)
     end
 
   end
